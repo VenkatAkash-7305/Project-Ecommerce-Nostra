@@ -1,0 +1,45 @@
+<style>
+.one{
+    background-color:black;
+    height:100px;
+}
+
+.two{
+    background-color:red;
+    height:100px;
+    transform:translateY(100px);
+    transition:1s;
+    opacity:0;
+}
+
+.reveal{
+    transform:translateY(0);
+    opacity:1;
+}
+</style>
+
+<div class="one"></div>
+
+<p>
+Scroll down to see the animation.
+</p>
+
+<div class="two"></div>
+
+<script>
+
+const two = document.querySelector(".two");
+
+window.addEventListener("scroll", function(){
+
+    const windowHeight = window.innerHeight;
+    const elementTop = two.getBoundingClientRect().top;
+
+    if(windowHeight > elementTop + 50){
+        two.classList.add("reveal");
+    }
+
+});
+
+</script>
+
