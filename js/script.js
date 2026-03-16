@@ -1,10 +1,13 @@
 // Offer Bar Close
 
 const offerBar = document.querySelector(".offer-bar");
+const offerClose = document.getElementById("offer-close");
 
-document.getElementById("offer-close").addEventListener("click", function () {
-    offerBar.style.display = "none";
-});
+if (offerBar && offerClose) {
+    offerClose.addEventListener("click", function () {
+        offerBar.style.display = "none";
+    });
+}
 
 
 // Side Navbar Open
@@ -12,16 +15,22 @@ document.getElementById("offer-close").addEventListener("click", function () {
 const sideNavMenu = document.getElementById("side-navbar-activate");
 const sidenavbar = document.querySelector(".side-navbar");
 
-sideNavMenu.addEventListener("click", function () {
-    sidenavbar.style.marginLeft = "0";
-});
+if (sideNavMenu && sidenavbar) {
+    sideNavMenu.addEventListener("click", function () {
+        sidenavbar.style.marginLeft = "0";
+    });
+}
 
 
 // Side Navbar Close
 
-document.getElementById("side-navbar-close").addEventListener("click", function () {
-    sidenavbar.style.marginLeft = "-60%";
-});
+const closeBtn = document.getElementById("side-navbar-close");
+
+if (closeBtn && sidenavbar) {
+    closeBtn.addEventListener("click", function () {
+        sidenavbar.style.marginLeft = "-60%";
+    });
+}
 
 
 
@@ -33,33 +42,33 @@ const sliderImage = document.querySelector(".slider-image-container");
 
 let sliderMargin = 0;
 
+if (sliderLeftButton && sliderRightButton && sliderImage) {
 
-// Right Slide
+    // Right Slide
+    sliderRightButton.addEventListener("click", function () {
 
-sliderRightButton.addEventListener("click", function () {
+        sliderMargin += 100;
 
-    sliderMargin += 100;
+        if (sliderMargin > 200) {
+            sliderMargin = 0;
+        }
 
-    if (sliderMargin > 200) {
-        sliderMargin = 0;
-    }
-
-    sliderImage.style.marginLeft = "-" + sliderMargin + "vw";
-});
+        sliderImage.style.marginLeft = "-" + sliderMargin + "vw";
+    });
 
 
-// Left Slide
+    // Left Slide
+    sliderLeftButton.addEventListener("click", function () {
 
-sliderLeftButton.addEventListener("click", function () {
+        if (sliderMargin === 0) {
+            sliderMargin = 200;
+        } else {
+            sliderMargin -= 100;
+        }
 
-    if (sliderMargin === 0) {
-        sliderMargin = 200;
-    } else {
-        sliderMargin -= 100;
-    }
-
-    sliderImage.style.marginLeft = "-" + sliderMargin + "vw";
-});
+        sliderImage.style.marginLeft = "-" + sliderMargin + "vw";
+    });
+}
 
 
 
@@ -68,21 +77,24 @@ sliderLeftButton.addEventListener("click", function () {
 
 const likeButtons = document.querySelectorAll(".like-button");
 
-likeButtons.forEach(function (btn) {
+if (likeButtons.length > 0) {
 
-    btn.addEventListener("click", function (e) {
+    likeButtons.forEach(function (btn) {
 
-        if (e.target.src.includes("blackheart")) {
-            e.target.src = "images/icons/redheart.png";
-        } 
-        else {
-            e.target.src = "images/icons/blackheart.png";
-        }
+        btn.addEventListener("click", function (e) {
+
+            if (e.target.src.includes("blackheart")) {
+                e.target.src = "images/icons/redheart.png";
+            } 
+            else {
+                e.target.src = "images/icons/blackheart.png";
+            }
+
+        });
 
     });
 
-});
-
+}
 
 
 
@@ -90,20 +102,22 @@ likeButtons.forEach(function (btn) {
 
 const scrollElements = document.querySelectorAll(".initial-scroll-animate");
 
-window.addEventListener("scroll", function () {
+if (scrollElements.length > 0) {
 
-    const windowHeight = window.innerHeight;
+    window.addEventListener("scroll", function () {
 
-    scrollElements.forEach(function (el) {
+        const windowHeight = window.innerHeight;
 
-        const elementTop = el.getBoundingClientRect().top;
+        scrollElements.forEach(function (el) {
 
-        if (windowHeight > elementTop - 100) {
-            el.classList.remove("reveal-scroll-animate");
-        }
+            const elementTop = el.getBoundingClientRect().top;
+
+            if (windowHeight > elementTop - 100) {
+                el.classList.remove("reveal-scroll-animate");
+            }
+
+        });
 
     });
 
-});
-
-
+}

@@ -1,10 +1,15 @@
 import { products } from "./products.js";
 
+/* Offer Bar */
+
 var offerBar = document.querySelector(".offer-bar");
 
 document.getElementById("offer-close").addEventListener("click", function () {
     offerBar.style.display = "none";
 });
+
+
+/* Side Navbar */
 
 var sideNavMenu = document.querySelector(".navbar-menu-toggle");
 var sidenavbar = document.querySelector(".side-navbar");
@@ -14,9 +19,8 @@ sideNavMenu.addEventListener("click", function () {
 });
 
 document.getElementById("side-navbar-close").addEventListener("click", () => {
-    document.querySelector(".side-navbar").style.marginLeft = "-60%";
+    sidenavbar.style.marginLeft = "-60%";
 });
-
 
 
 /* Load Products */
@@ -30,21 +34,23 @@ products.forEach((product) => {
 
     createItem.innerHTML = `
         <img src="images/${product.src}">
-        <h1>${product.name}</h1>
+        <h3>${product.name}</h3>
         <p>₹${product.price}</p>
         <span class="tags" style="display:none;">${product.tags}</span>
     `;
 
     container.append(createItem);
-});
 
+});
 
 
 /* Filtering */
 
 var filterList = [];
 
-var tags = document.getElementsByName("tags");
+/* Select all checkbox filters */
+
+var tags = document.querySelectorAll("input[name='tags']");
 
 tags.forEach((tag) => {
 
@@ -64,6 +70,7 @@ tags.forEach((tag) => {
 });
 
 
+/* Update visible products */
 
 function update() {
 
@@ -78,9 +85,9 @@ function update() {
 
         const tempFilterArray = temp.split(',');
 
-        filterList.forEach((j) => {
-            tempFilterArray.forEach((i) => {
-                if (j == i) {
+        filterList.forEach((filter) => {
+            tempFilterArray.forEach((tag) => {
+                if (filter == tag) {
                     check = true;
                 }
             });
